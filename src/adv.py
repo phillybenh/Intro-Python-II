@@ -1,5 +1,5 @@
 from room import Room
-
+from player import Player
 # Declare all the rooms
 
 room = {
@@ -33,6 +33,13 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
+# print(room['outside'])
+# print(room['outside'].n_to)
+# # Assignment:
+# * Add a REPL parser to `adv.py` that accepts directional commands to move the player
+# * After each move, the REPL should print the name and description of the player's current room
+# * Valid commands are `n`, `s`, `e` and `w` which move the player North, South, East or West
+# * The parser should print an error if the player tries to move where there is no room.
 #
 # Main
 #
@@ -49,3 +56,14 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+def  game():
+    username = input("Please provide your characters name: ")
+    player = Player(username)
+
+    print(f"Hello, {player}")
+
+    move = input("Please select a direction to move: \n [n] North | [s] South | [e] East | [w] West \n")
+    # while player.victory == False:
+
+
+game()
