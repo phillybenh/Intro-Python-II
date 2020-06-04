@@ -6,7 +6,7 @@
 # * Players should have a `name` and `current_room` attributes
 
 class Player:
-    def __init__(self, name, current_room="outside", victory=False):
+    def __init__(self, name, current_room, victory=False):
         self.name = name
         self.current_room = current_room
         self.victory = victory
@@ -17,10 +17,13 @@ class Player:
 
     # def get_name(self):
     #     return self.name
-
+    # don't need after refactor?
     def set_location(self, room):
-        self.current_room = room
-        return self.current_room
+        if room != None:
+            self.current_room = room
+            return self.current_room
+        else:
+            raise 
 
     def set_victory(self, victory):
         self.victory = victory

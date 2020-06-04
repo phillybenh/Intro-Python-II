@@ -49,14 +49,19 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
-def  game():
+
+
+def game():
     username = input("Please provide your characters name: ")
-    player = Player(username)
+    first_room = room['outside']
+    player = Player(username, first_room)
 
-    print(f"    Hello {player}, you are ")
-    print(f"        {room[player.current_room]}\n\n")
+    print(f"\n    Hello {player}, you are ")
+    print(
+        f"        {player.current_room.name}. {player.current_room.description}\n\n")
 
-    move = input("Please select a direction to move and then press [enter]: \n [n] North | [s] South | [e] East | [w] West | [q] quit \n").lower()
+    move = input(
+        "Please select a direction to move and then press [enter]: \n [n] North | [s] South | [e] East | [w] West | [q] quit \n").lower()
 
     while player.victory == False:
         if move == "q":
@@ -64,17 +69,21 @@ def  game():
             exit()
         try:
             if move == "n":
-                player.set_location(
-                    room[player.current_room].n_to.name.split()[0].lower())
+                player.set_location(player.current_room.n_to)
+                # player.set_location(
+                #     room[player.current_room].n_to.name.split()[0].lower())
             elif move == "s":
-                player.set_location(
-                    room[player.current_room].s_to.name.split()[0].lower())
+                player.set_location(player.current_room.s_to)
+                # player.set_location(
+                #     room[player.current_room].s_to.name.split()[0].lower())
             elif move == "e":
-                player.set_location(
-                    room[player.current_room].e_to.name.split()[0].lower())
+                player.set_location(player.current_room.e_to)
+                # player.set_location(
+                #     room[player.current_room].e_to.name.split()[0].lower())
             elif move == "w":
-                player.set_location(
-                    room[player.current_room].w_to.name.split()[0].lower())
+                player.set_location(player.current_room.w_to)
+                # player.set_location(
+                #     room[player.current_room].w_to.name.split()[0].lower())
             else:
                 # incorrect direction value, throw error
                 raise ValueError
@@ -86,14 +95,16 @@ def  game():
             print("\n !!! There is nowhere to move in this direction !!! \n")
 
         print(f"\n    {player}, you are in the")
-        print(f"        {room[player.current_room]} \n")
+        print(
+            f"        {player.current_room.name}. {player.current_room.description} \n")
 
         # for when player reaches end of game
-        if player.current_room == "treasure":
+        if player.current_room == room['treasure']:
             print("\nCongratulations, you have reached the end of the game!\n")
             exit()
         # reassign the move variable before next loop starts
         move = input(
             "Please select a direction to move and then press [enter]: \n [n] North | [s] South | [e] East | [w] West | [q] quit \n\n").lower()
+
 
 game()
