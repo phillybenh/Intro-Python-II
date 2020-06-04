@@ -1,3 +1,4 @@
+import sys
 from room import Room
 from player import Player
 # Declare all the rooms
@@ -33,13 +34,6 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
-# print(room['outside'])
-# print(room['outside'].n_to)
-# # Assignment:
-# * Add a REPL parser to `adv.py` that accepts directional commands to move the player
-# * After each move, the REPL should print the name and description of the player's current room
-# * Valid commands are `n`, `s`, `e` and `w` which move the player North, South, East or West
-# * The parser should print an error if the player tries to move where there is no room.
 #
 # Main
 #
@@ -61,9 +55,52 @@ def  game():
     player = Player(username)
 
     print(f"Hello, {player}")
+    print(room[player.current_room])
 
-    move = input("Please select a direction to move: \n [n] North | [s] South | [e] East | [w] West \n")
-    # while player.victory == False:
+    move = input("Please select a direction to move and then press [enter]: \n [n] North | [s] South | [e] East | [w] West | [q] quit \n").lower()
 
+    while player.victory == False:
+        try:
+            if move == "q":
+                print("You'll never reach the treasure now! Bye forever.")
+                sys.exit()
+            elif move == "n":
+                # print(room[player.current_room])
+                # print(room[room[player.current_room].n_to.name.lower()])
+                player.set_location(
+                    room[player.current_room].n_to.name.lower())
+            elif move == "s":
+                # print(room[player.current_room])
+                # print(room[room[player.current_room].n_to.name.lower()])
+                player.set_location(
+                    room[player.current_room].s_to.name.lower())
+            elif move == "e":
+                # print(room[player.current_room])
+                # print(room[room[player.current_room].n_to.name.lower()])
+                player.set_location(
+                    room[player.current_room].e_to.name.lower())
+            elif move == "w":
+                # print(room[player.current_room])
+                # print(room[room[player.current_room].n_to.name.lower()])
+                player.set_location(
+                    room[player.current_room].w_to.name.lower())
+
+
+            else:
+                player.set_victory(True)
+                print(player.victory)
+                # sys.exit()
+                raise ValueError
+
+        except ValueError:
+            print("Select a valid direction.")
+
+        except:
+            print("\n !!! There is nowhere to move in this direction !!! \n")
+
+        print(player)
+        print(room[player.current_room])
+        move = input(
+            "Please select a direction to move and then press [enter]: \n [n] North | [s] South | [e] East | [w] West | [q] quit \n\n").lower()
 
 game()

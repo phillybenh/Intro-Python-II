@@ -12,13 +12,16 @@ class Player:
         self.victory = victory
 
     def __str__(self):
-        return f"{self.name} you are in the {self.current_room}"
+        # return f"{self.name} you are in the {self.current_room}"
+        return f"{self.name} you are in "
 
-    def get_name(self):
-        return self.name
+    # def get_name(self):
+    #     return self.name
 
-    def get_location(self):
+    def set_location(self, room):
+        self.current_room = room
         return self.current_room
-    
-    def get_victory(self):
+
+    def set_victory(self, victory):
+        self.victory = victory
         return self.victory
