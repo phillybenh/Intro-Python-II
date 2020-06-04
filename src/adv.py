@@ -76,6 +76,7 @@ def  game():
                 player.set_location(
                     room[player.current_room].w_to.name.split()[0].lower())
             else:
+                # incorrect direction value, throw error
                 raise ValueError
 
         except ValueError:
@@ -85,7 +86,13 @@ def  game():
             print("\n !!! There is nowhere to move in this direction !!! \n")
 
         print(f"\n    {player}, you are in the")
-        print(f"{        room[player.current_room]} \n")
+        print(f"        {room[player.current_room]} \n")
+
+        # for when player reaches end of game
+        if player.current_room == "treasure":
+            print("\nCongratulations, you have reached the end of the game!\n")
+            exit()
+        # reassign the move variable before next loop starts
         move = input(
             "Please select a direction to move and then press [enter]: \n [n] North | [s] South | [e] East | [w] West | [q] quit \n\n").lower()
 
