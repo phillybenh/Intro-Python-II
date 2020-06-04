@@ -38,3 +38,21 @@ class Player:
             for item in self.current_room.room_items:
                 items += item.name + " - " + item.description + ", \n"
             return f"        {self.current_room.name}. {self.current_room.description}. \n    Look, there are some old things on the ground: {items}\n"
+
+    def get_item(self, picked_item):
+        for item in self.current_room.room_items:
+            if item.name == picked_item:
+                self.player_items.append(item)
+                self.current_room.room_items.remove(item)
+                return f"\n You have picked up {item.name} \n"
+        
+        return f"\n {picked_item} not found"
+#self.current_room.room_items
+    def drop_item(self, picked_item):
+        for item in self.player_items:
+            if item.name == picked_item:
+                self.current_room.room_items.append(item)
+                self.player_items.remove(item)
+                return f"\n You have dropped up {item.name} \n"
+        
+        return f"\n {picked_item} not found"

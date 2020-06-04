@@ -77,7 +77,11 @@ def game():
         ################################
     print(player.player_room())
     move = input(
-        "Please select a direction to move and then press [enter]: \n [n] North | [s] South | [e] East | [w] West | [q] quit \n").lower()
+        """Please select a direction to move and then press [enter]: \n 
+        [n] North | [s] South | [e] East | [w] West | [q] quit \n
+                    ---- OR ----
+        If you see somethign you like, try typing like [get sword], \n
+        you can get rid of the item by typing [drop sword].\n""").lower()
 
     while player.victory == False:
         if move == "q":
@@ -95,6 +99,19 @@ def game():
                 
             elif move == "w":
                 player.set_location(player.current_room.w_to)
+            
+            elif move.split(" ")[0] == "get":
+                picked_item = move.split(" ")[1]
+                print(player.get_item(picked_item))
+
+            elif move.split(" ")[0] == "drop":
+                picked_item = move.split(" ")[1]
+                print(player.drop_item(picked_item))
+
+            elif move == "i":
+                print("You have the following items:\n")
+                for items in player.player_items:
+                    print(items.name)
                 
             else:
                 # incorrect direction value, throw error
