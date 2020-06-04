@@ -59,7 +59,7 @@ The `/src` directory contains the files `adv.py`, which is where the main logic 
   * This will be the _base class_ for specialized item types to be declared
     later.
 
-* Add the ability to add items to rooms.
+* Add the ability to add items to rooms.!
 
   * The `Room` class should be extended with a `list` that holds the `Item`s
     that are currently in that room.
