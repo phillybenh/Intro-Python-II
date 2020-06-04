@@ -13,7 +13,7 @@ class Player:
 
     def __str__(self):
         # return f"{self.name} you are in the {self.current_room}"
-        return f"{self.name} you are in "
+        return f"{self.name}"
 
     # def get_name(self):
     #     return self.name
